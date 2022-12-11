@@ -17,6 +17,7 @@ builder.Services.ConfigureServiceManager();
 builder.Services.ConfigureSqlContext(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped<ValidationFilterAttribute>();
+builder.Services.ConfigureSwagger();
 
 builder.Services.AddControllers(config =>
 {
@@ -27,6 +28,11 @@ builder.Services.AddControllers(config =>
 
 var app = builder.Build();
 
+app.UseSwagger(); 
+app.UseSwaggerUI(s =>
+{
+    s.SwaggerEndpoint("/swagger/apollo/swagger.json", "Apollo API"); 
+});
 
 var logger = app.Services.GetRequiredService<ILoggerManager>(); 
 app.ConfigureExceptionHandler(logger);

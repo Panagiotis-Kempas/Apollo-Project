@@ -27,13 +27,13 @@ namespace Apollo
             CreateMap<Category, CategoryDto>();
             CreateMap<Class, ClassDto>();
 
-            CreateMap<AccountDto, Account>();
+            CreateMap<AccountDto, Account>().ForMember(x => x.AccountId, opt => opt.MapFrom(x => x.AccountId == null ? Guid.NewGuid().ToString() : x.AccountId.ToString()));
 
             CreateMap<CustomerDto, Customer>().ForMember(x => x.Id, opt => opt.MapFrom(x => x.Id == null ? Guid.NewGuid().ToString() : x.Id.ToString()));
 
             CreateMap<IdentifierDto, Identifier>().ForMember(x => x.Id, opt => opt.MapFrom(x => x.Id == null ? Guid.NewGuid().ToString() : x.Id.ToString()));
 
-            CreateMap<PartyDto, Party>();
+            CreateMap<PartyDto, Party>().ForMember(x => x.PartyId, opt => opt.MapFrom(x => x.PartyId == null ? Guid.NewGuid().ToString() : x.PartyId.ToString()));
 
             CreateMap<AddressDto, Address>().ForMember(x => x.Id, opt => opt.MapFrom(x => x.Id == null ? Guid.NewGuid().ToString() : x.Id.ToString()));
 

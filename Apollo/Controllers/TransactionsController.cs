@@ -45,7 +45,7 @@ namespace Apollo.Controllers
         }
 
         [HttpGet("balance")]
-        public async Task<IActionResult> GalculateEndOfDayBalance(string accountId)
+        public async Task<IActionResult> GetAllEndOfDayBalance(string accountId)
         {
             var result = await _service.TransactionService.GetEndOfDayBalances(accountId, trackChanges: false);
 

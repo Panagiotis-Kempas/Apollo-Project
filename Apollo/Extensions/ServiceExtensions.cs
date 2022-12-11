@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using LoggerService;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using Repository;
 using Service.Contracts.Interfaces;
 using Service.Services;
@@ -37,6 +38,14 @@ namespace Apollo.Extensions
 
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
             services.AddDbContext<RepositoryContext>(opts => opts.UseSqlServer(configuration.GetConnectionString("ApolloConnection")));
+
+        public static void ConfigureSwagger(this IServiceCollection services) 
+        {
+            services.AddSwaggerGen(s => 
+            {
+                s.SwaggerDoc("apollo", new OpenApiInfo { Title = "Apollo API" }); 
+            });
+        }
 
     }
 }
