@@ -12,7 +12,7 @@ using Repository;
 namespace Apollo.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20221211150511_CreateDatabase")]
+    [Migration("20221212170305_CreateDatabase")]
     partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

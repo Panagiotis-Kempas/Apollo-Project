@@ -29,7 +29,7 @@ namespace Apollo.Controllers
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateAccount([FromBody] AccountDto account)
         {          
-            var createdAccount = await _service.AccountService.CreateAccountAsync(account);
+            var createdAccount = await _service.AccountService.CreateAccountAsync(account,trackChanges:false);
 
             return CreatedAtRoute("AccountById", new { id = createdAccount.AccountId }, createdAccount);
         }

@@ -8,7 +8,7 @@ namespace Shared.DataTransferObjects
 {
     public class AccountDto
     {
-        public string AccountId { get; set; }
+        public string? AccountId { get; set; }
         public string CurrencyCode { get; set; }
         public string DisplayName { get; set; }
         public string AccountHolderNames { get; set; }

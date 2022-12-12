@@ -44,7 +44,7 @@ namespace Apollo.Controllers
             return CreatedAtRoute("GetTransacionForAccount", new { accountId, id = transactionToReturn.TransactionId }, transactionToReturn);
         }
 
-        [HttpGet("balance")]
+        [HttpGet("endofdaybalances")]
         public async Task<IActionResult> GetAllEndOfDayBalance(string accountId)
         {
             var result = await _service.TransactionService.GetEndOfDayBalances(accountId, trackChanges: false);

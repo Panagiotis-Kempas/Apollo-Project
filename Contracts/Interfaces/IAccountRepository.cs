@@ -12,6 +12,6 @@ namespace Contracts.Interfaces
         Task<IEnumerable<Account>> GetAllAccountsAsync(bool trackChanges);
         Task<Account> GetAccountAsync(string accountId, bool trackChanges);
 
-        void CreateAccount(Account account);
+        void CreateAccount(Account account, string customerId);
     }
 }

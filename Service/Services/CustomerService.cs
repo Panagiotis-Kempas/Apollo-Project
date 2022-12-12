@@ -26,7 +26,7 @@ namespace Service.Services
             _mapper = mapper;
         }
 
-        public async Task<CustomerDto> CreateCustomerAsync(CustomerDto customer)
+        public async Task<CustomerDto> CreateCustomerAsync(CustomerDto customer,bool trackChanges )
         {
             var customerEntity = _mapper.Map<Customer>(customer);
 

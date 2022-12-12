@@ -43,7 +43,7 @@ namespace Service.Services
         public async Task<(IEnumerable<TransactionDto> transactions, MetaData metaData)> GetAllTransactionsAsync(string accountId, TransactionParameters transactionParameters, bool trackChanges)
         {
             if (!transactionParameters.ValidAmountRange)
-                throw new MaxDateRangeBadRequestException();
+                throw new MaxAmountRangeBadRequestException();
 
             await CheckIfAccountExists(accountId, trackChanges);
 

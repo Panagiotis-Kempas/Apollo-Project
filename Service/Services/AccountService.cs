@@ -25,11 +25,13 @@ namespace Service.Services
             _mapper = mapper;
         }
 
-        public async Task<AccountDto> CreateAccountAsync(AccountDto account)
+        public async Task<AccountDto> CreateAccountAsync(AccountDto account, bool trackChanges)
         {
             var accountEntity = _mapper.Map<Account>(account);
 
-            _repository.Account.CreateAccount(accountEntity);
+            var customers = await _repository.Customer.GetAllCustomersAsync(trackChanges);
+            var customerId = customers.FirstOrDefault().Id;
+            _repository.Account.CreateAccount(accountEntity,customerId);
 
             await _repository.SaveAsync();
 
@@ -54,8 +56,8 @@ namespace Service.Services
         {
             var accounts = await _repository.Account.GetAllAccountsAsync(trackChanges);
 
-            if(accounts == null || accounts.Count() < 1)
-                return Enumerable.Empty<AccountDto>();  
+            if (accounts == null || accounts.Count() < 1)
+                return Enumerable.Empty<AccountDto>();
 
             var accountsDto = _mapper.Map<IEnumerable<AccountDto>>(accounts);
 

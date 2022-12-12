@@ -20,24 +20,24 @@ namespace Apollo.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetCustomers()
-        { 
+        {
             var customers = await _serviceManager.CustomerService.GetAllCustomersAsync(trackChanges: false);
-            return Ok(customers); 
+            return Ok(customers);
         }
 
         [HttpGet("{id}", Name = "CustomerById")]
         public async Task<IActionResult> GetCustomerAsync(string id)
         {
-            var customer = await _serviceManager.CustomerService.GetCustomerAsync(id,trackChanges: false);
+            var customer = await _serviceManager.CustomerService.GetCustomerAsync(id, trackChanges: false);
 
             return Ok(customer);
         }
 
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> CreateCustomer([FromBody]CustomerDto customerDto)
+        public async Task<IActionResult> CreateCustomer([FromBody] CustomerDto customerDto)
         {
-            var createdCustomer = await _serviceManager.CustomerService.CreateCustomerAsync(customerDto);
+            var createdCustomer = await _serviceManager.CustomerService.CreateCustomerAsync(customerDto, trackChanges: false);
 
             return CreatedAtRoute("CustomerById", new { id = createdCustomer.Id }, createdCustomer);
         }

@@ -26,11 +26,13 @@ namespace Repository.Repos
             return await FindByCondition(x=> x.AccountId == accountId,trackChanges)
                 .Include(x=> x.Balances)
                 .Include(x=> x.Identifiers)
-                .Include(x=> x.Parties).SingleOrDefaultAsync();
+                .Include(x=> x.Parties)
+                .Include(x => x.Transactions).SingleOrDefaultAsync();
         }
 
-        public void CreateAccount(Account account)
+        public void CreateAccount(Account account,string customerId)
         {
+            account.CustomerId = customerId;
             Create(account);
         }
     }

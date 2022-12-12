@@ -14,6 +14,6 @@ namespace Service.Contracts.Interfaces
 
         Task<CustomerDto> GetCustomerAsync(string customerId, bool trackChanges);
 
-        Task<CustomerDto> CreateCustomerAsync(CustomerDto customer);
+        Task<CustomerDto> CreateCustomerAsync(CustomerDto customer,bool trackChanges);
     }
 }

@@ -13,7 +13,7 @@ namespace Service.Contracts.Interfaces
         Task<IEnumerable<AccountDto>> GetAllAccountsAsync(bool trackChanges);
         Task<AccountDto> GetAccountAsync(string accountId, bool trackChanges);
 
-        Task<AccountDto> CreateAccountAsync(AccountDto account);
+        Task<AccountDto> CreateAccountAsync(AccountDto account, bool trackChanges);
     }
 }
 

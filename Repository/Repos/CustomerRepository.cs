@@ -20,12 +20,16 @@ namespace Repository.Repos
 
         public async Task<IEnumerable<Customer>> GetAllCustomersAsync(bool trackChanges)
         {
-            return await FindAll(trackChanges).OrderBy(a => a.ProviderName).ToListAsync();
+            return await FindAll(trackChanges).OrderBy(a => a.ProviderName)
+                .Include(x => x.Accounts)
+                .ToListAsync();
         }
 
         public async Task<Customer> GetCustomerAsync(string customerId, bool trackChanges)
         {
-            return await FindByCondition(c => c.Id == customerId, trackChanges).SingleOrDefaultAsync();
+            return await FindByCondition(c => c.Id == customerId, trackChanges)
+                .Include(x=> x.Accounts)
+                .SingleOrDefaultAsync();
         }
     }
 }

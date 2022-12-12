@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entities.Exceptions
 {
-    public class MaxDateRangeBadRequestException :BadRequestException
+    public class MaxAmountRangeBadRequestException :BadRequestException
     {
-        public MaxDateRangeBadRequestException():base("There is no transaction on this Date")
+        public MaxAmountRangeBadRequestException():base("There is no transaction on this Date")
         {
 
         }
