@@ -1,0 +1,3 @@
+1 To run the project you have to have Sql Server as you database and your server must be your pc(local server).Just connect with jsut input period to connect with your db.In your solution.Open Package Manager Console and run Update-Database to create your databse in Sql Server.Migrations is already created 
+2 With postman go to apollo-collection -> Customer folder -> POST Create-Customer-Apollo and put on body of the request the data from apollo-carter.json.With that step you will have populate your databse with data.
+3 After that you can run all the requests from the apollo-collection that I have uploaded
