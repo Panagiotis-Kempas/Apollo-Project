@@ -98,6 +98,7 @@ namespace Service.Services
             var groupedTransactions = transactions.GroupBy(x => x.BookingDate);
 
             var balances = new List<EndOfDayBalanceDto>();
+
             foreach (var group in groupedTransactions)
             {
                 var date = DateTime.Parse(group.Key).Subtract(new TimeSpan(1, 0, 0, 0)).ToShortDateString();

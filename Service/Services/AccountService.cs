@@ -41,6 +41,7 @@ namespace Service.Services
         public async Task<AccountDto> GetAccountAsync(string accountId, bool trackChanges)
         {
             var account = await _repository.Account.GetAccountAsync(accountId, trackChanges);
+
             if (account == null)
                 throw new AccountNotFoundException(accountId);
 
@@ -52,6 +53,9 @@ namespace Service.Services
         public async Task<IEnumerable<AccountDto>> GetAllAccountsAsync(bool trackChanges)
         {
             var accounts = await _repository.Account.GetAllAccountsAsync(trackChanges);
+
+            if(accounts == null || accounts.Count() < 1)
+                return Enumerable.Empty<AccountDto>();  
 
             var accountsDto = _mapper.Map<IEnumerable<AccountDto>>(accounts);
 
