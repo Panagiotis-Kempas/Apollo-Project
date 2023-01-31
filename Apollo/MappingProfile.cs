@@ -62,6 +62,8 @@ namespace Apollo
             CreateMap<CategoryDto, Category>().ForMember(x => x.CategoryId, opt => opt.MapFrom(x => x.CategoryId == null ? Guid.NewGuid().ToString() : x.CategoryId.ToString()));
 
             CreateMap<ClassDto, Class>().ForMember(x => x.ClassId, opt => opt.MapFrom(x => x.ClassId == null ? Guid.NewGuid().ToString() : x.ClassId.ToString()));
+
+            CreateMap<UserForRegistrationDto, User>();
         }
     }
 }

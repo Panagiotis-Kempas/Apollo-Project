@@ -13,5 +13,7 @@ namespace Service.Contracts.Interfaces
         IBalanceService BalanceService { get; }
         IPartyService PartyService { get; }
         ITransactionService TransactionService { get; }
+
+        IAuthenticationService AuthenticationService { get; }
     }
 }

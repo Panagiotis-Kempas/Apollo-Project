@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using Contracts;
+using Entities.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Service.Contracts.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -16,19 +19,22 @@ namespace Service.Services
         private readonly Lazy<IPartyService> _partyService;
         private readonly Lazy<IBalanceService> _balanceService;
         private readonly Lazy<ITransactionService> _transactionService;
+        private readonly Lazy<IAuthenticationService> _authenticationService;
 
-        public ServiceManager(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper)
+        public ServiceManager(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper,UserManager<User> userManager, IConfiguration configuration)
         {
             _customerService = new Lazy<ICustomerService>(() => new CustomerService(repositoryManager, logger, mapper));
             _accountService = new Lazy<IAccountService>(() => new AccountService(repositoryManager, logger, mapper));
             _partyService = new Lazy<IPartyService>(() => new PartyService(repositoryManager, logger, mapper));
             _balanceService = new Lazy<IBalanceService>(() => new BalanceService(repositoryManager, logger, mapper));
             _transactionService = new Lazy<ITransactionService>(() => new TransactionService(repositoryManager, logger, mapper));
+            _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(logger, mapper, userManager, configuration));
         }
         public ICustomerService CustomerService => _customerService.Value;
         public IAccountService AccountService => _accountService.Value;
         public IPartyService PartyService => _partyService.Value;
         public IBalanceService BalanceService => _balanceService.Value;
         public ITransactionService TransactionService => _transactionService.Value;
+        public IAuthenticationService AuthenticationService => _authenticationService.Value;
     }
 }

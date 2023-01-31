@@ -1,4 +1,5 @@
 ﻿using Apollo.ActionFilters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts.Interfaces;
@@ -20,6 +21,7 @@ namespace Apollo.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Manager")]
         public async Task<IActionResult> GetTransactionsForAccount(string accountId, [FromQuery] TransactionParameters transactionParameters)
         {
             var pagedResult = await _service.TransactionService.GetAllTransactionsAsync(accountId, transactionParameters, trackChanges: false);
